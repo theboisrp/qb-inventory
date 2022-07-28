@@ -182,6 +182,7 @@ local function AddToStash(stashId, slot, otherslot, itemName, amount, info)
 			}
 		end
 	end
+	TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")")--Modified
 end
 
 local function RemoveFromStash(stashId, slot, itemName, amount)
@@ -201,6 +202,7 @@ local function RemoveFromStash(stashId, slot, itemName, amount)
 			Stashes[stashId].items[slot] = nil
 		end
 	end
+	TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")")--Modified
 end
 
 -- Trunk items
@@ -304,6 +306,7 @@ local function AddToTrunk(plate, slot, otherslot, itemName, amount, info)
 			}
 		end
 	end
+	TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")")--Modified
 end
 
 local function RemoveFromTrunk(plate, slot, itemName, amount)
@@ -322,6 +325,7 @@ local function RemoveFromTrunk(plate, slot, itemName, amount)
 			Trunks[plate].items[slot] = nil
 		end
 	end
+	TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")")--Modified
 end
 
 -- Glovebox items
@@ -468,6 +472,7 @@ local function AddToDrop(dropId, slot, itemName, amount, info)
 			id = dropId,
 		}
 	end
+	TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")")--Modified
 end
 
 local function RemoveFromDrop(dropId, slot, itemName, amount)
@@ -487,6 +492,7 @@ local function RemoveFromDrop(dropId, slot, itemName, amount)
 			Drops[dropId].items[slot] = nil
 		end
 	end
+	TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")")--Modified
 end
 
 local function CreateDropId()
@@ -533,6 +539,7 @@ local function CreateNewDrop(source, fromSlot, toSlot, itemAmount)
 			slot = toSlot,
 			id = dropId,
 		}
+		TriggerEvent('logsystem:log', source, "Tranfered item ("..itemName..")("..amount..")") --Modified
 		TriggerEvent("qb-log:server:CreateLog", "drop", "New Item Drop", "red", "**".. GetPlayerName(source) .. "** (citizenid: *"..Player.PlayerData.citizenid.."* | id: *"..source.."*) dropped new item; name: **"..itemData.name.."**, amount: **" .. itemAmount .. "**")
 		TriggerClientEvent("inventory:client:DropItemAnim", source)
 		TriggerClientEvent("inventory:client:AddDropItem", -1, dropId, source, coords)
@@ -881,6 +888,7 @@ RegisterNetEvent('inventory:server:UseItemSlot', function(slot)
 			TriggerClientEvent("QBCore:Client:UseItem", src, itemData)
 			TriggerClientEvent('inventory:client:ItemBox', src, itemInfo, "use")
 		end
+		TriggerEvent('logsystem:log', source, "Used Item ("..tostring(itemData.info.name)..")")--Modified
 	end
 end)
 
